@@ -1,33 +1,33 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
-export class Usuario {
+export class User {
   id: number;
 
   @IsNotEmpty({
-    message: 'nomeDeUsuario é obrigatório.',
+    message: 'username is required.',
   })
   @IsString({
-    message: 'nomeDeUsuario precisa ser uma string.',
+    message: 'username needs to be a string.',
   })
-  nomeDeUsuario: string;
+  username: string;
 
   @IsEmail(
     {},
     {
-      message: 'email precisa ser um endereço de email válido.',
+      message: 'email needs to be a valid email address.',
     },
   )
   email: string;
 
   @IsNotEmpty({
-    message: 'senha é obrigatório.',
+    message: 'password is required.',
   })
-  senha: string;
+  password: string;
 
   @IsNotEmpty({
-    message: 'nomeCompleto é obrigatório.',
+    message: 'fullName is required.',
   })
-  nomeCompleto: string;
+  fullName: string;
 
-  dataDeEntrada: Date;
+  created_at: Date;
 }
