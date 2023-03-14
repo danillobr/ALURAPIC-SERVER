@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsUsernameUnique } from './is-username-unique.validator';
 
 export class User {
   id: number;
@@ -9,6 +10,7 @@ export class User {
   @IsString({
     message: 'username needs to be a string.',
   })
+  @IsUsernameUnique({ message: 'username should be unique' })
   username: string;
 
   @IsEmail(

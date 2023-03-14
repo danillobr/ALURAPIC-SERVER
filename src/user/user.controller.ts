@@ -13,9 +13,9 @@ export class UserController {
     return userCreated;
   }
 
-  @Get(':fullName')
-  public findByName(@Param('fullName') fullName: string): User {
-    const user = this.userService.findByName(fullName);
+  @Get(':username')
+  public findByUsername(@Param('username') username: string): User {
+    const user = this.userService.findByUsername(username);
 
     return user;
   }
