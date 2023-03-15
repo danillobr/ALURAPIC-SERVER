@@ -1,4 +1,12 @@
-import { Body, Controller, Get, HttpStatus, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  NotFoundException,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { NestResponse } from '../core/http/nest-response';
 import { NestResponseBuilder } from '../core/http/nest-response-builder';
 import { User } from './user.entity';
@@ -23,7 +31,12 @@ export class UserController {
   @Get(':username')
   public findByUsername(@Param('username') username: string): User {
     const user = this.userService.findByUsername(username);
-
+    if (!user) {
+      throw new NotFoundException({
+        statusCode: HttpStatus.NOT_FOUND,
+        message: "User doesn't exist.",
+      });
+    }
     return user;
   }
 }
